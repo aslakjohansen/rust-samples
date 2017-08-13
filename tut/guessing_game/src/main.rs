@@ -19,7 +19,10 @@ fn main () {
                    .expect("Failed to read line");
         println!("Your guess: {}", guess);
         
-        let guess: u32 = guess.trim().parse().expect("That wasn't very numbery");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_)  => continue,
+        };
         println!("Your guess: {}", guess);
         
         match guess.cmp(&secret_number) {
