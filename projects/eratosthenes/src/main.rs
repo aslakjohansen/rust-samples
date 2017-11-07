@@ -2,15 +2,15 @@ use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let max: u32 = args[1].parse().expect("Argument must be an unsigned integer");
-    let mut data = vec![false; max as usize];
-    let last: u32 = (max as f64).sqrt() as u32;
+    let max: usize = args[1].parse().expect("Argument must be an unsigned integer");
+    let mut data = vec![false; max];
+    let last: usize = (max as f64).sqrt() as usize;
     
     // process
     for i in 2..last {
-        let mut ptr: u32 = i*2;
+        let mut ptr: usize = i*2;
         while ptr<max {
-            data[ptr as usize] = true;
+            data[ptr] = true;
             ptr += i;
         }
     }
@@ -18,7 +18,7 @@ fn main() {
     // display
     println!("Primes below {}:", max);
     for i in 2..max {
-        if ! data[i as usize] {
+        if ! data[i] {
             println!("{}", i);
         }
     }
